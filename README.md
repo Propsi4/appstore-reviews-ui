@@ -20,5 +20,5 @@ If you are developing a production application, we recommend using TypeScript wi
 
 ```bash
 docker build -t appstore-reviews-ui .
-docker run -d -p 8080:80 --name appstore-reviews-ui
+docker run -d -p 8080:80 appstore-reviews-ui
 ```
