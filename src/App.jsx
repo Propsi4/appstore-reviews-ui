@@ -71,7 +71,13 @@ function App() {
 
     } catch (err) {
       console.error(err);
-      setError("An error occurred. Make sure the backend is running and the App ID is valid.");
+      if (err.response && err.response.status >= 400 && err.response.status < 500) {
+        // Display the specific error message returned by the backend (e.g., {"detail": "..."})
+        const detailMessage = err.response.data?.detail || `Error ${err.response.status}: Request failed.`;
+        setError(detailMessage);
+      } else {
+        setError("An error occurred. Make sure the backend is running and the App ID is valid.");
+      }
     } finally {
       setLoading(false);
     }
